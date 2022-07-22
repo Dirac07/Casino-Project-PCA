@@ -1,0 +1,76 @@
+{% extends "./base.html" %}
+
+{% block title %}Administrador Casino{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="container py-1">
+            <h2>Agregar Jugadores</h2>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <form action="/agregarJugador/" method="POST">
+                    <div class="form-group py-2">
+                        <input type="number" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código" maxlength="20" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="100" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numDinero" name="numDinero" class="form-control" placeholder="Capital" min="0">
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto py-2">
+                        <button class="btn btn-success btn-primary" type="submit">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container py-2">
+            <h3>Resultado</h3>
+        </div>
+        <div class="card" style="width: 9rem;">
+            <img src="static/imgs/{{color}}.jfif" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{color}}</h5>
+            </div>
+          </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Jugadores</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Dinero</th>
+                        <th>Apuesta</th>
+                        <th>Monto</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for j in jugadores %} 
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{j.id}}</th>
+                        <td>{{j.nombre}}</th>
+                        <td>${{j.dinero}}</th>
+                        <td>{{j.apuesta}}</th> 
+                        <td>${{j.apuestaCant}}</th>        
+                        <td><a href="edicionJugador/{{j.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarJugador/{{j.id}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
