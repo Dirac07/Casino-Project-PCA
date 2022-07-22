@@ -5,3 +5,4 @@ Para correr en Docker, clonar y escribir en la consola
 ```
 docker run --publish 8000:8000 casino-project
 ```
+Y la aplicación debería correrse localmente en el puerto 8000 `localhost:8000`
